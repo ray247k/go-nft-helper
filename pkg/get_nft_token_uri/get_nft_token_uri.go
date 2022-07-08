@@ -27,7 +27,7 @@ func GetNftTokenUri(hexAddress string, tokenId int) (*string, error) {
 	defer client.Close()
 
 	address := common.HexToAddress(hexAddress)
-	instance, err := erc721.NewERC721(address, client)
+	instance, err := erc721.NewErc721(address, client)
 	if err != nil {
 		return nil, err
 	}

@@ -1,0 +1,1 @@
+abigen --abi="./erc721.abi.json" --type="erc721" --pkg=erc721 --out="erc721.go"
