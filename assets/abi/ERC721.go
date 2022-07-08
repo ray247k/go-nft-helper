@@ -896,3 +896,33 @@ func (_ERC721 *ERC721Session) TotalSupply() (*big.Int, error) {
 func (_ERC721 *ERC721CallerSession) TotalSupply() (*big.Int, error) {
 	return _ERC721.Contract.TotalSupply(&_ERC721.CallOpts)
 }
+
+// TokenURI is a free data retrieval call binding the contract method 0xc87b56dd.
+//
+// Solidity: function tokenURI(tokenId uint256) constant returns(string)
+func (_ERC721 *ERC721Caller) TokenURI(opts *bind.CallOpts, _tokenId *big.Int) (string, error) {
+	var out []interface{}
+	err := _ERC721.contract.Call(opts, &out, "tokenURI", _tokenId)
+
+	if err != nil {
+		return *new(string), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
+
+	return out0, err
+}
+
+// TokenURI is a free data retrieval call binding the contract method 0xc87b56dd.
+//
+// Solidity: function tokenURI(tokenId uint256) constant returns(string)
+func (_ERC721 *ERC721Session) TokenURI(tokenId *big.Int) (string, error) {
+	return _ERC721.Contract.TokenURI(&_ERC721.CallOpts, tokenId)
+}
+
+// TokenURI is a free data retrieval call binding the contract method 0xc87b56dd.
+//
+// Solidity: function tokenURI(tokenId uint256) constant returns(string)
+func (_ERC721 *ERC721CallerSession) TokenURI(tokenId *big.Int) (string, error) {
+	return _ERC721.Contract.TokenURI(&_ERC721.CallOpts, tokenId)
+}

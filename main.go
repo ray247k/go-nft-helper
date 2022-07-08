@@ -2,6 +2,7 @@ package main
 
 import (
 	"egox/pkg/get_nft_owner_of"
+	"egox/pkg/get_nft_token_uri"
 	"egox/pkg/get_nft_total_supply"
 	"log"
 	"strconv"
@@ -26,6 +27,14 @@ func getItemsOwnerOfByContract(contract string) {
 		if err != nil {
 			log.Printf("Get NFT owner of failed, err: %v\n", err)
 		}
-		log.Printf("Token Id: %v owner: %s", i, owner)
+
+		tokenURI, err := get_nft_token_uri.GetNftTokenUri("0x4e2fbc9e3feb25999991c249217d8ee5608860ad", i)
+
+		if err != nil {
+			log.Printf("Get NFT tokenURI failed, err: %v\n", err)
+		}
+
+		log.Printf("Token Id: %v owner: %s tokenURI: %s", i, owner, *tokenURI)
+
 	}
 }
