@@ -5,6 +5,6 @@ import (
 )
 
 func main() {
-	// TODO 改成獨立執行序一直跑的版本
+	// TODO 改成獨立執行序
 	cron.Cronjob()
 }

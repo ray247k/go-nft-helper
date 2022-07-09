@@ -3,7 +3,6 @@ package cron
 import (
 	"log"
 	"strconv"
-	"time"
 
 	"egox/pkg/get_nft_owner_of"
 	"egox/pkg/get_nft_token_uri"
@@ -21,7 +20,8 @@ func Cronjob() {
 		getItemsOwnerOfByContract("0x4e2Fbc9e3feB25999991C249217d8ee5608860AD")
 	})
 	c.Start()
-	time.Sleep(time.Minute * 5) // 5 分鐘會自己停
+	defer c.Stop()
+	select {}
 }
 
 func getItemsOwnerOfByContract(contract string) {
