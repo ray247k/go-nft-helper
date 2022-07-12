@@ -4,6 +4,7 @@ import (
 	"log"
 	"strconv"
 
+	"egox/database/model"
 	"egox/pkg/get_nft_owner_of"
 	"egox/pkg/get_nft_token_uri"
 	"egox/pkg/get_nft_total_supply"
@@ -17,7 +18,11 @@ func Cronjob() {
 	c := cron.New(cron.WithChain(cron.SkipIfStillRunning(cron.DefaultLogger)))
 
 	c.AddFunc("* * * * *", func() {
-		getItemsOwnerOfByContract("0x4e2Fbc9e3feB25999991C249217d8ee5608860AD")
+		contracts := model.GetAllContracts()
+		for _, contract := range contracts {
+			getItemsOwnerOfByContract(contract)
+		}
+
 	})
 	c.Start()
 	defer c.Stop()
@@ -30,7 +35,7 @@ func getItemsOwnerOfByContract(contract string) {
 		log.Printf("Get NFT total supply failed, err: %v\n", err)
 	}
 
-	log.Printf("NFT total supply: %s", totalSupply)
+	log.Printf("Contract: %s total supply: %s", contract, totalSupply)
 
 	totalAmount, _ := strconv.Atoi(totalSupply.String())
 

@@ -1,3 +1,9 @@
 infura:
   endpoint: 
   secret: 
+database:
+  host:
+  port: 
+  user:
+  password:
+  database:
