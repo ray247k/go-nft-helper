@@ -40,12 +40,12 @@ func getItemsOwnerOfByContract(contract string) {
 	totalAmount, _ := strconv.Atoi(totalSupply.String())
 
 	for i := 1; i <= totalAmount; i++ {
-		owner, err := get_nft_owner_of.GetOwnerOf("0x4e2fbc9e3feb25999991c249217d8ee5608860ad", i)
+		owner, err := get_nft_owner_of.GetOwnerOf(contract, i)
 		if err != nil {
 			log.Printf("Get NFT owner of failed, err: %v\n", err)
 		}
 
-		tokenURI, err := get_nft_token_uri.GetNftTokenUri("0x4e2fbc9e3feb25999991c249217d8ee5608860ad", i)
+		tokenURI, err := get_nft_token_uri.GetNftTokenUri(contract, i)
 
 		if err != nil {
 			log.Printf("Get NFT tokenURI failed, err: %v\n", err)
