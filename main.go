@@ -1,10 +1,9 @@
 package main
 
 import (
-	"egox/cron"
+	"go-nft-helper/cron"
 )
 
 func main() {
-	// TODO 改成獨立執行序
 	cron.Cronjob()
 }

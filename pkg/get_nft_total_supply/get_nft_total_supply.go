@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math/big"
 
-	erc721 "egox/assets/abi"
+	erc721 "go-nft-helper/assets/abi"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"

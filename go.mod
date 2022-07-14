@@ -1,4 +1,4 @@
-module egox
+module go-nft-helper
 
 go 1.18
 

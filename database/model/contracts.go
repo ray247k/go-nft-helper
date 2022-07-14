@@ -59,7 +59,7 @@ func GetAllContracts() []string {
 	)
 
 	// Read some data from the table.
-	rows, err := db.Query("SELECT address from contracts;")
+	rows, err := db.Query("SELECT address FROM contracts WHERE deleted_at IS NULL;")
 	checkError(err)
 	defer rows.Close()
 	for rows.Next() {

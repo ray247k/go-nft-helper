@@ -1,8 +1,8 @@
 package get_nft_token_uri
 
 import (
-	erc721 "egox/assets/abi"
 	"fmt"
+	erc721 "go-nft-helper/assets/abi"
 	"math/big"
 
 	"github.com/ethereum/go-ethereum/common"

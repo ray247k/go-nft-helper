@@ -4,10 +4,10 @@ import (
 	"log"
 	"strconv"
 
-	"egox/database/model"
-	"egox/pkg/get_nft_owner_of"
-	"egox/pkg/get_nft_token_uri"
-	"egox/pkg/get_nft_total_supply"
+	"go-nft-helper/database/model"
+	"go-nft-helper/pkg/get_nft_owner_of"
+	"go-nft-helper/pkg/get_nft_token_uri"
+	"go-nft-helper/pkg/get_nft_total_supply"
 
 	"github.com/robfig/cron/v3"
 )
@@ -17,10 +17,11 @@ func Cronjob() {
 
 	c := cron.New(cron.WithChain(cron.SkipIfStillRunning(cron.DefaultLogger)))
 
+	// TODO 因為是送到 goroutine 所以 SkipIfStillRunning 要自己判斷才行
 	c.AddFunc("* * * * *", func() {
 		contracts := model.GetAllContracts()
 		for _, contract := range contracts {
-			getItemsOwnerOfByContract(contract)
+			go getItemsOwnerOfByContract(contract)
 		}
 
 	})
