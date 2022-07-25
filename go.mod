@@ -4,7 +4,6 @@ go 1.18
 
 require (
 	github.com/ethereum/go-ethereum v1.10.20
-	github.com/robfig/cron/v3 v3.0.1
 	github.com/spf13/viper v1.12.0
 )
 
