@@ -7,22 +7,30 @@ import (
 	"go-nft-helper/pkg/get_nft_total_supply"
 	"log"
 	"strconv"
+	"sync"
 	"time"
 )
 
+var wg sync.WaitGroup
+
 func main() {
-	ticker := time.NewTicker(1 * time.Second)
+	ticker := time.NewTicker(1 * time.Hour)
 	defer ticker.Stop()
 
 	for range ticker.C {
 		contracts := model.GetAllContracts()
 		for _, contract := range contracts {
-			getItemsOwnerOfByContract(contract)
+			wg.Add(1)
+			go getItemsOwnerOfByContract(contract)
 		}
+
+		wg.Wait()
 	}
 }
 
 func getItemsOwnerOfByContract(contract string) {
+	defer wg.Done()
+
 	totalSupply, err := get_nft_total_supply.GetTotalSupply(contract)
 	if err != nil {
 		log.Printf("Get NFT total supply failed, err: %v\n", err)
